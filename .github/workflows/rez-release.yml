@@ -5,7 +5,11 @@ name: CI/CD
 # Controls when the workflow will run
 on:
   workflow_call:
-
+    inputs:
+      options:
+        required: false
+        type: string
+        
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -20,4 +24,4 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: release Rez package
-        run: $REZ_ACTIVATOR rez release --no-latest --ignore-existing-tag
+        run: $REZ_ACTIVATOR rez release --no-latest --ignore-existing-tag ${{ inputs.options }}
