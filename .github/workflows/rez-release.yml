@@ -3,10 +3,15 @@ name: Release Rez Package
 on:
   workflow_call:
     inputs:
-      options:
+      options-lin:
         required: false
         type: string
-        
+      options-win:
+        required: false
+        type: string
+      options-mac:
+        required: false
+        type: string
 jobs:
   rez-release-linux:
     runs-on: [self-hosted, Linux]
@@ -15,4 +20,4 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: release Rez package
-        run: $REZ_ACTIVATOR rez release --no-latest --ignore-existing-tag ${{ inputs.options }}
+        run: $REZ_ACTIVATOR rez release --no-latest --ignore-existing-tag ${{ inputs.options-lin }}
